@@ -31,11 +31,12 @@
   - vim
   - vim_cleanup
 
+# https://stackoverflow.com/questions/46516649/\
+#   ansible-register-find-module-return-values-in-a-loop-and-extract-the-path-prop
 - name: '[cleanup] removing old vim configuration'
   file: path="{{ item }}" state=absent
   become: yes
   with_items:
-    # https://stackoverflow.com/questions/46516649/ansible-register-find-module-return-values-in-a-loop-and-extract-the-path-prop
     # FLATTENING THE EXISTING DICTIONARY AND TURNING IT TO A LIST OF FILE PATHS:
     - "{{ user_vim_cfg_files.results | sum(attribute='files', start=[]) | map(attribute='path') | list }}"
   when:
