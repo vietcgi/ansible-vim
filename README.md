@@ -90,3 +90,4 @@ Andrew Shagayev | [e-mail](mailto:drewshg@gmail.com)
 [role-badge]: https://img.shields.io/badge/role-drew--kun.vim-green.svg
 [galaxy-link]: https://galaxy.ansible.com/drew-kun/vim/
 [mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[mit-link]: https://raw.githubusercontent.com/drew-kun/ansible-vim/master/LICENSE
