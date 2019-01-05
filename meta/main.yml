@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: vim
   author: Andrew Shagayev
   description: This role installs vim package for terminal usage
   license: MIT
