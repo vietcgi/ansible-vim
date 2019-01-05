@@ -68,8 +68,8 @@ Role Variables
 | **vim_cleanup** | remove all vim configuration customizations created by this role | `no` |
 | **vim_env** | Where to install vim: system or user.<br/> If you install it system-wide, all users will use your default configuration. | `users` |
 | **vim_users** | List of users to install vim. Use it in conjunction with `vim_env`. | `user` |
-| **vim_plugins** | List of vim plugins to install. Use [Vundle](https://github.com/gmarik/Vundle.vim) format. | see [`defaults/main.yml`](defaults/main.yml#L23) |
-| **vim_nongithub_plugins** | List of vim plugins to install | see [`defaults/main.yml`](defaults/main.yml#L23) |
+| **vim_github_plugins** | List of vim plugins to install. Use [Vundle](https://github.com/gmarik/Vundle.vim) format. | see [`defaults/main.yml`](defaults/main.yml#L23) |
+| **vim_nongithub_plugins** | List of vim plugins to install | see [`defaults/main.yml`](defaults/main.yml#L58) |
 | **vim_vundle_version** | Vundle version to install. | `v0.10.2` |
 
 Dependencies
