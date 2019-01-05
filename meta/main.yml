@@ -15,9 +15,8 @@ galaxy_info:
     - stretch
     - jessie
     - wheezy
-  categories:
-  - development
-  - system
   galaxy_tags:
   - vim
+  - development
+  - system
 ...
