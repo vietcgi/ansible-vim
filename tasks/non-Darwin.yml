@@ -1,0 +1,39 @@
+---
+- name: '[non-Darwin] Make sure vim-tiny is uninstalled'
+  package: name=vim-tiny state=absent purge=true
+  become: yes
+  tags: vim
+
+- name: '[non-Darwin] Make sure vim-nox is installed'
+  package: name=vim-nox state=present
+  become: yes
+  tags: vim
+
+#========================= UPDATE ALTERNATIVES ===========================
+# Analog of 'update-alternatives --set editor /usr/bin/vim.nox'
+- name: '[non-Darwin] Setting vim default editor for visudo'
+  alternatives:
+    name: editor
+    path: /usr/bin/vim.nox
+  become: yes
+  tags: vim
+#=========================================================================
+
+##============= SET ENVIRONMENT VARIABLES FOR EDITOR AND TMUX =============
+#- name: '[non-Darwin] Setting up environment variable for vim to look good in tmux'
+#  blockinfile:
+#    path: /etc/profile.d/env_var.sh
+#    follow: yes
+#    create: yes
+#    mode: 0644
+#    owner: root
+#    group: root
+#    content: |
+#      export EDITOR="/usr/bin/vim visudo"
+#      export TERM="xterm-256color"  # For vim colors in tmux
+#    marker: "# {mark} ======== VIM role: Ansible managed block ========="
+#  become: yes
+#  when: vim_env == 'system'
+#  tags: vim
+##=========================================================================
+...

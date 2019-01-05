@@ -1,0 +1,25 @@
+---
+- name: '[dependencies] Non-MacOS: Install git and CTags'
+  package:
+    name:
+    - git
+    - exuberant-ctags
+    state: present
+  become: yes
+  when: not ansible_os_family == 'Darwin'
+  tags:
+  - vim
+  - vim_dependencies
+
+- name: '[dependencies] MacOS: Install git'
+  homebrew:
+    name:
+    - git
+    state: present
+  become: no
+  when: ansible_os_family == 'Darwin'
+  tags:
+  - vim
+  - vim_dependencies
+
+...

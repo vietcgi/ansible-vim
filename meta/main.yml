@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: Andrew Shagayev
+  description: This role installs vim package for terminal usage
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+  - name: MacOSX
+  - name: Ubuntu
+    versions:
+    - trusty
+  - name: Debian
+    versions:
+    - stretch
+    - jessie
+    - wheezy
+  categories:
+  - development
+  - system
+  galaxy_tags:
+  - vim
+...

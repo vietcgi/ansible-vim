@@ -1,0 +1,55 @@
+---
+- name: '[main] Import cleanup tasks'
+  import_tasks: cleanup.yml
+  when: vim_cleanup is defined and true
+  tags:
+  - vim
+  - vim_cleanup
+
+- name: '[main] Include dependencies installation tasks'
+  include_tasks: dependencies.yml
+  tags:
+  - vim
+  - vim_dependencies
+
+- name: '[main] Include Darwin-specific tasks if provisioning MacOS'
+  include_tasks: Darwin.yml
+  when: ansible_os_family == 'Darwin'
+  tags: vim
+
+- name: '[main] Include vim installation tasks'
+  include_tasks: non-Darwin.yml
+  when: not ansible_os_family == 'Darwin'
+  tags: vim
+
+- name: '[main] Include system configuration tasks'
+  include_tasks: configure_system.yml
+  vars:
+    vim_root_dir: "/etc/vim"
+    vim_root_config: "{{ vim_root_dir }}/vimrc.local"
+    vim_root_bundles: "{{ vim_root_dir }}/vimrc.bundles"
+    vim_root_emoji: "{{ vim_root_dir }}/vimrc.emoji"
+    vim_root_airline: "{{ vim_root_dir }}/vimrc.airline"
+    vim_root_command_t: "{{ vim_root_dir }}/vimrc.command-t"
+    vim_root_syntastic: "{{ vim_root_dir }}/vimrc.syntastic"
+    vim_root_devicons: "{{ vim_root_dir }}/vimrc.devicons"
+  when:
+  - vim_env == 'system'
+  - not ansible_os_family == 'Darwin'
+  tags: vim
+
+- name: '[main] Include user configuration tasks'
+  include_tasks: configure_users.yml
+  vars:
+    vim_root_config: "~/.vimrc"
+    vim_root_cust_conf_dir: "~/.vim/vim.local"
+    vim_root_cust_conf_plugin_dir: "{{ vim_root_cust_conf_dir }}/vimrc.plugins"
+    vim_root_bundles: "{{ vim_root_cust_conf_dir }}/vimrc.bundles"
+    vim_root_emoji: "{{ vim_root_cust_conf_plugin_dir }}/vimrc.emoji"
+    vim_root_airline: "{{ vim_root_cust_conf_plugin_dir }}/vimrc.airline"
+    vim_root_command_t: "{{ vim_root_cust_conf_plugin_dir }}/vimrc.command-t"
+    vim_root_syntastic: "{{ vim_root_cust_conf_plugin_dir }}/vimrc.syntastic"
+    vim_root_devicons: "{{ vim_root_cust_conf_plugin_dir }}/vimrc.devicons"
+  when: vim_env == 'user' or vim_env == 'users'
+  tags: vim
+...

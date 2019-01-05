@@ -1,0 +1,62 @@
+---
+# defaults file for expandfs
+
+# remove all vim configuration customizations created by this role
+vim_cleanup: no
+
+# where to install vim config: 'system' | ('user'|'users')
+vim_env: users
+
+# system-wide vundle plugin installation can only be stored in /root/.vim, so
+# user-specific configuration is possible, but
+# only if system-wide configuration is NOT planned to be used on this system
+# For non-root users it is possible to use both system-wide and user configurations
+vim_users:
+- user
+
+vim_colorscheme: mustang
+
+# Another Tip: installing EMOJI plugin both systemwide AND per user is bad idea.
+# If doing both system-wide and user configuration,
+# then disable Emoji for one of installation variants depending on the goals.
+
+vim_github_plugins:
+- 'tangledhelix/vim-kickstart'            # Kickstart Files Highlighting
+- 'Matt-Deacalion/vim-systemd-syntax'     # Systemd Unit Files Highlighting
+- 'pearofducks/ansible-vim'               # Ansible Files Highlighting
+- 'hashivim/vim-vagrant'                  # Vagrant Files Highlighting
+- 'vim-scripts/bash-support.vim'          # Bash Files Highlighting
+- 'vim-airline/vim-airline'               # Lightweight vimscrip-based statusline
+- 'vim-airline/vim-airline-themes'        # vim-airline theme collection
+- 'tpope/vim-fugitive'                    # Git Integration
+- 'airblade/vim-gitgutter'                # Git Integration ***
+- 'scrooloose/nerdtree'                   # Navigation (files and folders)
+- 'godlygeek/tabular.git'                 # Aligning stuff
+- 'Glench/Vim-Jinja2-Syntax'              # Jinja2 Syntax Highlighting
+- 'vim-syntastic/syntastic'               # syntax checker for different filetypes (airline integration)
+- 'ctrlpvim/ctrlp.vim'                    # Alternative to command-t (heavy - a lot of features, airline intergration)
+#- 'wincent/command-t'                     # Fast "fuzzy" engine for switching buffers, searching etc.
+#- 'junegunn/vim-emoji'                    # EMOJI
+##- 'Lokaltog/vim-easymotion'
+#- 'vim-scripts/FuzzyFinder'               # Alternative to command-t plugin (Very lightweight, but less features)
+##- 'vim-scripts/L9'
+#- 'tpope/vim-repeat'                      # Useful for markup languages ***
+##- 'tpope/vim-surround'                    # Useful for markup languages
+##- 'plasticboy/vim-markdown'               # Markdown Editor ***
+#- 'editorconfig/editorconfig-vim'
+##- 'altercation/vim-colors-solarized'
+##- 'vim-ruby/vim-ruby'                     # Rubi Files Hightlighting
+##- 'tpope/vim-rails'                       # Rails (ruby)
+##- 'rstacruz/sparkup', {'rtp': 'vim/'}
+##- 'majutsushi/tagbar'
+##- 'mileszs/ack.vim'
+##- 'vim-scripts/matchit.zip'
+##- 'Raimondi/delimitMate'
+##- 'vim-scripts/MatchTag'
+- 'ryanoasis/vim-devicons'                # Add icons to plugins (This must be loaded after all other plugins)
+
+vim_nongithub_plugins: []
+#- 'git://git.wincent.com/command-t.git'  # Non github repo
+
+vim_vundle_version: 'v0.10.2'
+...
