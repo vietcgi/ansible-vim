@@ -6,7 +6,9 @@
     - exuberant-ctags
     state: present
   become: yes
-  when: not ansible_os_family == 'Darwin'
+  register: vim_dep_result
+  until: vim_dep_result is succeeded
+  when: ansible_os_family != 'Darwin'
   tags:
   - vim
   - vim_dependencies
@@ -17,6 +19,8 @@
     - git
     state: present
   become: no
+  register: vim_dep_result
+  until: vim_dep_result is succeeded
   when: ansible_os_family == 'Darwin'
   tags:
   - vim
