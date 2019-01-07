@@ -15,6 +15,12 @@
   when: '"junegunn/vim-emoji" in vim_github_plugins' # no need to use "{{ }}" in "when" conditions (Jinja2 feature)
   tags: vim
 
+- name: "[system] Generating {{ vim_root_signify }} from template"
+  template: src=vimrc.signify.j2 dest="{{ vim_root_signify }}" owner=root group=root mode=0644
+  become: yes
+  when: '"mhinz/vim-signify" in vim_github_plugins'
+  tags: vim
+
 - name: "[system] Generating {{ vim_root_syntastic }} from template"
   template: src=vimrc.syntastic.j2 dest="{{ vim_root_syntastic }}" owner=root group=root mode=0644
   become: yes

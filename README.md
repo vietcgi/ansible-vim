@@ -71,6 +71,7 @@ Role Variables
 | **vim_github_plugins** | List of vim plugins to install. Use [Vundle](https://github.com/gmarik/Vundle.vim) format. | see [`defaults/main.yml`](defaults/main.yml#L23) |
 | **vim_nongithub_plugins** | List of vim plugins to install | see [`defaults/main.yml`](defaults/main.yml#L58) |
 | **vim_vundle_version** | Vundle version to install. | `v0.10.2` |
+| **vim_emoji_git_integration** | Itegrate emoji with gitgutter or signify (some people may not like the look). | `no` |
 
 Dependencies
 ------------

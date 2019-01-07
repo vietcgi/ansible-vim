@@ -1,11 +1,21 @@
 "================================ EMOJI ====================================
-" Git Gutter
+{% if vim_emoji_git_integration %}
+" Git Integration
 silent! if emoji#available()
+    " Git Signify
+    let g:signify_sign_add = emoji#for('small_blue_diamond')
+    let g:signify_sign_delete = emoji#for('small_red_triangle')
+    let g:signify_sign_delete_first_line = '‾'
+    let g:signify_sign_change = emoji#for('small_orange_diamond')
+    let g:signify_sign_changedelete = emoji#for('collision')
+
+    " Git Gutter
     let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
     let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
     let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
     let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
+{% endif %}
 
 "" Append Emoji list to current buffer
 "for e in emoji#list()

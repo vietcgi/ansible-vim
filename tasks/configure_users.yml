@@ -49,6 +49,19 @@
   when: vim_users is defined and "junegunn/vim-emoji" in vim_github_plugins
   tags: vim
 
+- name: "[user] Generating {{ vim_root_signify }} from template"
+  template:
+    src: vimrc.signify.j2
+    dest: "{{ vim_root_signify }}"
+    owner: "{{ item }}"
+    group: "{{ item if ansible_os_family != 'Darwin' else 'wheel' if item == 'root' else 'staff' }}"
+    mode: 0644
+  with_items: "{{ vim_users }}"
+  become: yes
+  become_user: "{{ item }}"
+  when: vim_users is defined and "mhinz/vim-signify" in vim_github_plugins
+  tags: vim
+
 - name: "[user] Generating {{ vim_root_syntastic }} from template"
   template:
     src: vimrc.syntastic.j2

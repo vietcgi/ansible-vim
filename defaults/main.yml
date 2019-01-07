@@ -29,7 +29,7 @@ vim_github_plugins:
 - 'vim-airline/vim-airline'               # Lightweight vimscrip-based statusline
 - 'vim-airline/vim-airline-themes'        # vim-airline theme collection
 - 'tpope/vim-fugitive'                    # Git Integration
-- 'airblade/vim-gitgutter'                # Git Integration ***
+- 'mhinz/vim-signify'                     # Fast alternative to gitgutter
 - 'scrooloose/nerdtree'                   # Navigation (files and folders)
 - 'godlygeek/tabular.git'                 # Aligning stuff
 - 'Glench/Vim-Jinja2-Syntax'              # Jinja2 Syntax Highlighting
@@ -37,6 +37,7 @@ vim_github_plugins:
 - 'ctrlpvim/ctrlp.vim'                    # Alternative to command-t (heavy - a lot of features, airline intergration)
 #- 'wincent/command-t'                     # Fast "fuzzy" engine for switching buffers, searching etc.
 #- 'junegunn/vim-emoji'                    # EMOJI
+#- 'airblade/vim-gitgutter'                # Git Integration ***
 ##- 'Lokaltog/vim-easymotion'
 #- 'vim-scripts/FuzzyFinder'               # Alternative to command-t plugin (Very lightweight, but less features)
 ##- 'vim-scripts/L9'
@@ -59,4 +60,6 @@ vim_nongithub_plugins: []
 #- 'git://git.wincent.com/command-t.git'  # Non github repo
 
 vim_vundle_version: 'v0.10.2'
+
+vim_emoji_git_integration: no  # Itegrate emoji with gitgutter or signify (some people don't like the look)
 ...

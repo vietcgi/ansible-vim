@@ -219,6 +219,16 @@ endif
 "===========================================================================
 {% endif %}
 
+{# IF INSTALLING VIM-SIGNIFY ADD THIS: #}
+{% if 'mhinz/vim-signify' in vim_github_plugins %}
+"============================== VIM-AIRLINE ================================
+if filereadable(expand("{{ vim_root_airline }}"))
+    source {{ vim_root_signify }}   " load vim-signify config
+endif
+
+"===========================================================================
+{% endif %}
+
 {# IF INSTALLING VIM-AIRLINE ADD THIS: #}
 {% if 'vim-airline/vim-airline' in vim_github_plugins %}
 "============================== VIM-AIRLINE ================================
