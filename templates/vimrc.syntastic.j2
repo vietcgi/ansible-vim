@@ -1,6 +1,8 @@
 "=============================== SYNTASTIC =================================
-set statusline+=%#warningmsg#
+" Do not set this if using powerline or airline or other plugins which
+" modify the statusline behaviour:
 set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%#warningmsg#
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1

@@ -88,9 +88,8 @@
 # ignore_errors: yes
 #
 # For troubleshooting add -V switch to this command and run it directly on the target
-#
 - name: '[system] Downloading plugins'
-  command: vim +PluginInstall +qal
+  command: 'vim -E -s -c "source /etc/vim/vimrc" -c PluginInstall -c qa'
   become: yes
   tags: vim
 ...
