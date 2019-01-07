@@ -1,7 +1,7 @@
 ---
 - name: '[main] Import cleanup tasks'
   import_tasks: cleanup.yml
-  when: vim_cleanup is defined and true
+  when: vim_cleanup
   tags:
   - vim
   - vim_cleanup
