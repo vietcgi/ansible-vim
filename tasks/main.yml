@@ -1,57 +1,90 @@
 ---
-- name: '[main] Import cleanup tasks'
+- name: "[main] Include variables for {{ vim_plugin_manager }} plugin manager"
+  include_vars: "{{ vim_plugin_manager }}.yml"
+  tags: vim
+
+- name: "[main] Import cleanup tasks"
   import_tasks: cleanup.yml
   when: vim_cleanup
   tags:
   - vim
   - vim_cleanup
 
-- name: '[main] Include dependencies installation tasks'
+- name: "[main] Include dependencies installation tasks"
   include_tasks: dependencies.yml
   tags:
   - vim
   - vim_dependencies
 
-- name: '[main] Include Darwin-specific tasks if provisioning MacOS'
+- name: "[main] Include Darwin-specific tasks if provisioning MacOS"
   include_tasks: Darwin.yml
-  when: ansible_os_family == 'Darwin'
+  when: "'Darwin' in ansible_os_family"
   tags: vim
 
-- name: '[main] Include vim installation tasks'
+- name: "[main] Include vim installation tasks"
   include_tasks: non-Darwin.yml
-  when: not ansible_os_family == 'Darwin'
+  when: "not 'Darwin' in ansible_os_family"
   tags: vim
 
-- name: '[main] Include system configuration tasks'
-  include_tasks: configure_system.yml
+- name: "[main] Include system configuration tasks"
+  include_tasks: system.yml
   vars:
+    #vim_pm_path: "/var/lib/vim/addons/{{ vim_plugin_manager }}.vim"
     vim_root_dir: "/etc/vim"
-    vim_root_config: "{{ vim_root_dir }}/vimrc.local"
-    vim_root_bundles: "{{ vim_root_dir }}/vimrc.bundles"
-    vim_root_emoji: "{{ vim_root_dir }}/vimrc.emoji"
-    vim_root_airline: "{{ vim_root_dir }}/vimrc.airline"
-    vim_root_command_t: "{{ vim_root_dir }}/vimrc.command-t"
-    vim_root_syntastic: "{{ vim_root_dir }}/vimrc.syntastic"
-    vim_root_signify: "{{ vim_root_dir }}/vimrc.signify"
-    vim_root_devicons: "{{ vim_root_dir }}/vimrc.devicons"
+    vim_root_local_config: "{{ vim_root_dir }}/vimrc.local"
+    vim_root_config: "{{ vim_root_dir }}/vimrc"
+    vim_root_plugins: "{{ vim_root_dir }}/{{ vim_pm_config }}"
+    # Plugins:
+    vim_checklist:
+    - { src: vimrc.emoji.j2, path: "{{ vim_root_dir }}/vimrc.emoji", name: 'vim-emoji' }
+    - { src: vimrc.nerdtree.j2, path: "{{ vim_root_dir }}/vimrc.nerdtree", name: 'nerdtree' }
+    - { src: vimrc.airline.j2, path: "{{ vim_root_dir }}/vimrc.airline", name: 'airline' }
+    - { src: vimrc.command-t.j2, path: "{{ vim_root_dir }}/vimrc.command-t", name: 'command-t' }
+    - { src: vimrc.ctrlp.j2, path: "{{ vim_root_dir }}/vimrc.ctrlp", name: 'ctrlp' }
+    - { src: vimrc.fzf.j2, path: "{{ vim_root_dir }}/vimrc.fzf", name: 'fzf.vim' }
+    - { src: vimrc.syntastic.j2, path: "{{ vim_root_dir }}/vimrc.syntastic", name: 'syntastic' }
+    - { src: vimrc.signify.j2, path: "{{ vim_root_dir }}/vimrc.signify", name: 'signify' }
+    - { src: vimrc.devicons.j2, path: "{{ vim_root_dir }}/vimrc.devicons", name: 'devicons' }
+    - { src: vimrc.commentary.j2, path: "{{ vim_root_dir }}/vimrc.commentary", name: 'commentary' }
+    - { src: vimrc.asyncomplete.j2, path: "{{ vim_root_dir }}/vimrc.asyncomplete", name: 'asyncomplete.vim' }
   when:
-  - vim_env == 'system'
-  - not ansible_os_family == 'Darwin'
+  - "'system' in vim_env"
+  - "not 'Darwin' in ansible_os_family"
   tags: vim
 
-- name: '[main] Include user configuration tasks'
-  include_tasks: configure_users.yml
+- name: "[main] Include user configuration tasks"
+  include_tasks: users.yml
   vars:
-    vim_root_config: "~/.vimrc"
+    #vim_pm_path: "~/.vim/{{ vim_pm_dir }}/{{ vim_plugin_manager }}.vim"
+    vim_root_config: "~/.vim/vimrc"  # symlinks this to ~/.vimrc
     vim_root_cust_conf_dir: "~/.vim/vim.local"
-    vim_root_cust_conf_plugin_dir: "{{ vim_root_cust_conf_dir }}/vimrc.plugins"
-    vim_root_bundles: "{{ vim_root_cust_conf_dir }}/vimrc.bundles"
-    vim_root_emoji: "{{ vim_root_cust_conf_plugin_dir }}/vimrc.emoji"
-    vim_root_airline: "{{ vim_root_cust_conf_plugin_dir }}/vimrc.airline"
-    vim_root_command_t: "{{ vim_root_cust_conf_plugin_dir }}/vimrc.command-t"
-    vim_root_syntastic: "{{ vim_root_cust_conf_plugin_dir }}/vimrc.syntastic"
-    vim_root_signify: "{{ vim_root_cust_conf_plugin_dir }}/vimrc.signify"
-    vim_root_devicons: "{{ vim_root_cust_conf_plugin_dir }}/vimrc.devicons"
-  when: vim_env == 'user' or vim_env == 'users'
+    vim_root_local_config: "{{ vim_root_cust_conf_dir }}/vimrc.local"
+    vim_root_conf_plug_dir: "{{ vim_root_cust_conf_dir }}/vimrc.plugins"
+    vim_root_plugins: "{{ vim_root_cust_conf_dir }}/{{ vim_pm_config }}"
+    # Plugins:
+    vim_checklist:
+    - { src: vimrc.emoji.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.emoji", name: 'vim-emoji' }
+    - { src: vimrc.nerdtree.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.nerdtree", name: 'nerdtree' }
+    - { src: vimrc.airline.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.airline", name: 'airline' }
+    - { src: vimrc.command-t.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.command-t", name: 'command-t' }
+    - { src: vimrc.ctrlp.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.ctrlp", name: 'ctrlp' }
+    - { src: vimrc.fzf.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.fzf", name: 'fzf.vim' }
+    - { src: vimrc.syntastic.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.syntastic", name: 'syntastic' }
+    - { src: vimrc.signify.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.signify", name: 'signify' }
+    - { src: vimrc.devicons.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.devicons", name: 'devicons' }
+    - { src: vimrc.commentary.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.commentary", name: 'commentary' }
+    - { src: vimrc.asyncomplete.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.asyncomplete", name: 'asyncomplete.vim' }
+  when: "'user' in vim_env or 'Darwin' in ansible_os_family"
+  tags: vim
+
+- name: "[main] Include vim-airline configuration if installing airline"
+  include_tasks: airline.yml
+  with_items: "{{ vim_plugins }}"
+  when: item.name == 'vim-airline/vim-airline'
+  tags: vim
+
+- name: "[main] Include neovim installation tasks"
+  include_tasks: nvim.yml
+  when: vim_neovim
   tags: vim
 ...

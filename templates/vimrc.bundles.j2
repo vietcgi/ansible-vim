@@ -8,9 +8,9 @@ filetype off                              " Required
 
 " set the runtime path to include Vundle and initialize
 {% if vim_env == "system" %}
-set rtp+=/var/lib/vim/addons/Vundle.vim/  " for system-wide configuration:
+set rtp+=/var/lib/vim/addons/Vundle.vim/  " for system-wide configuration
 {% else %}
-set rtp+=~/.vim/bundle/Vundle.vim/
+set rtp+=~/.vim/{{ vim_plugins_dir }}/Vundle.vim/
 {% endif %}
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
@@ -19,14 +19,9 @@ call vundle#begin()
 " Let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" Define bundles via Github repos
-{% for plugin in vim_github_plugins %}
-Plugin '{{plugin}}'
-{% endfor %}
-
-" Define non-Github repos
-{% for plugin in vim_nongithub_plugins %}
-Plugin '{{plugin}}'
+" Define bundles via Github or non-github repos:
+{% for plugin in vim_plugins %}
+Plugin '{{ plugin.name }}'
 {% endfor %}
 
 if filereadable(expand("~/.vimrc.bundles.local"))
@@ -34,7 +29,6 @@ if filereadable(expand("~/.vimrc.bundles.local"))
 endif
 
 call vundle#end()
-"filetype on
 
 " use filetype based indenting (does not interfere with 'autoindent')
 " although may interfere with 'smartindent' and 'cindent'

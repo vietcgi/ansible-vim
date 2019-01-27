@@ -14,50 +14,33 @@ vim_env: users
 vim_users:
 - user
 
+# mustang, solarized, nord...
 vim_colorscheme: mustang
+
+vim_plugin_manager: plug  # 'vundle' or 'plug'
+
+vim_neovim: yes
+
+# Tip: note that the plugins specified within the single and double quotes.
+# This makes possible to specify the load options for each plugin if using plug (recommended)
 
 # Another Tip: installing EMOJI plugin both systemwide AND per user is bad idea.
 # If doing both system-wide and user configuration,
 # then disable Emoji for one of installation variants depending on the goals.
 
-vim_github_plugins:
-- 'tangledhelix/vim-kickstart'            # Kickstart Files Highlighting
-- 'Matt-Deacalion/vim-systemd-syntax'     # Systemd Unit Files Highlighting
-- 'pearofducks/ansible-vim'               # Ansible Files Highlighting
-- 'hashivim/vim-vagrant'                  # Vagrant Files Highlighting
-- 'vim-scripts/bash-support.vim'          # Bash Files Highlighting
-- 'vim-airline/vim-airline'               # Lightweight vimscrip-based statusline
-- 'vim-airline/vim-airline-themes'        # vim-airline theme collection
-- 'tpope/vim-fugitive'                    # Git Integration
-- 'mhinz/vim-signify'                     # Fast alternative to gitgutter
-- 'scrooloose/nerdtree'                   # Navigation (files and folders)
-- 'godlygeek/tabular.git'                 # Aligning stuff
-- 'Glench/Vim-Jinja2-Syntax'              # Jinja2 Syntax Highlighting
-- 'vim-syntastic/syntastic'               # syntax checker for different filetypes (airline integration)
-- 'ctrlpvim/ctrlp.vim'                    # Alternative to command-t (heavy - a lot of features, airline intergration)
-#- 'wincent/command-t'                     # Fast "fuzzy" engine for switching buffers, searching etc.
-#- 'junegunn/vim-emoji'                    # EMOJI
-#- 'airblade/vim-gitgutter'                # Git Integration ***
-##- 'Lokaltog/vim-easymotion'
-#- 'vim-scripts/FuzzyFinder'               # Alternative to command-t plugin (Very lightweight, but less features)
-##- 'vim-scripts/L9'
-#- 'tpope/vim-repeat'                      # Useful for markup languages ***
-##- 'tpope/vim-surround'                    # Useful for markup languages
-##- 'plasticboy/vim-markdown'               # Markdown Editor ***
-#- 'editorconfig/editorconfig-vim'
-##- 'altercation/vim-colors-solarized'
-##- 'vim-ruby/vim-ruby'                     # Rubi Files Hightlighting
-##- 'tpope/vim-rails'                       # Rails (ruby)
-##- 'rstacruz/sparkup', {'rtp': 'vim/'}
-##- 'majutsushi/tagbar'
-##- 'mileszs/ack.vim'
-##- 'vim-scripts/matchit.zip'
-##- 'Raimondi/delimitMate'
-##- 'vim-scripts/MatchTag'
-- 'ryanoasis/vim-devicons'                # Add icons to plugins (This must be loaded after all other plugins)
-
-vim_nongithub_plugins: []
-#- 'git://git.wincent.com/command-t.git'  # Non github repo
+# the name value must be the last part of the plugin name after / delimiter:
+# e.g. for 'mileszs/ack.vim' plugin name: ack.vim
+vim_plugins:
+- { name: 'tpope/vim-sensible' }             # Starting point for vim configuration
+- { name: 'vim-airline/vim-airline' }        # Lightweight vimscrip-based statusline
+- { name: 'vim-airline/vim-airline-themes' } # vim-airline theme collection
+- { name: 'edkolev/tmuxline.vim' }           # tmux status line generator with vim-airline integration
+- { name: 'junegunn/vim-emoji' }             # EMOJI
+#- { name: 'mhinz/vim-signify' }              # Fast alternative to slow 'airblade/vim-gitgutter' (show git signatures)
+#- { name: 'vim-syntastic/syntastic' }        # Syntax Checker for different filetypes (airline integration)
+#- { name: 'ryanoasis/vim-devicons' }         # Add icons to plugins (Must be loaded after all other plugins in .vimrc)
+#- { name: 'wincent/command-t' }              # Fast "fuzzy" engine for switching buffers, searching etc.
+#- { name: 'ctrlpvim/ctrlp.vim' }             # Alternative to command-t (heavy - a lot of features, airline intergration)
 
 vim_vundle_version: 'v0.10.2'
 

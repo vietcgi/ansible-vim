@@ -61,6 +61,13 @@ Requirements
 ------------
 Ansible  1.9 or greater
 
+NOTE:
+
+IF 'Down' task just hangs forever, this may be because of the following:
+ - .vimrc or .vim files permissions (see 'which sudo' and become_method: su)
+ - errors in .vimrc
+ - misspelled plugin names: PlugInstall(or PluginInstall) triggers git, the "wish" GUI dialog for OpenSSH appears.
+
 Role Variables
 --------------
 | Variable | Description | Default |

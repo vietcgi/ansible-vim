@@ -1,3 +1,4 @@
 *.key
 *.swp
 .DS_Store
+*.retry

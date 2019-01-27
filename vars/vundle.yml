@@ -1,0 +1,4 @@
+---
+vim_pm_config: vimrc.bundles
+vim_plugins_dir: bundle
+...

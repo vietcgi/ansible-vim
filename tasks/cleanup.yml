@@ -24,11 +24,10 @@
   register: user_vim_cfg_files
   become: yes
   become_user: "{{ item }}"
-  #become_method: su
   with_items: "{{ vim_users }}"
   when:
   - vim_users is defined
-  - vim_env == 'user' or vim_env == 'users'
+  - "'user' in vim_env"
   tags:
   - vim
   - vim_cleanup
@@ -43,8 +42,7 @@
     - "{{ user_vim_cfg_files.results | sum(attribute='files', start=[]) | map(attribute='path') | list }}"
   when:
   - vim_users is defined
-  - vim_env == 'user' or
-    vim_env == 'users'
+  - "'user' in vim_env"
   tags:
   - vim
   - vim_cleanup

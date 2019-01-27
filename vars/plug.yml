@@ -1,0 +1,4 @@
+---
+vim_pm_config: vimrc.plug
+vim_plugins_dir: plugged
+...

@@ -16,33 +16,15 @@
 
 - name: '[Darwin] Set vim as a default editor for visudo in ~/bash_profile if using bash'
   lineinfile:
-    path: ~/.bash_profile
+    path: "~/.{{ 'zshrc' if 'zsh' in vim_shell.stdout else 'bash_profile' if 'bash' in vim_shell.stdout }}"
     regexp: '^.*export\sEDITOR=.*'
     line: 'export EDITOR=vim visudo'
-  when: vim_shell.stdout is search('bash')
-  #when: "vim_shell.stdout.find('v=' ~ /bash) == -1"  # should look similar to this in ansible 2.9
-
-- name: '[Darwin] Set vim as a default editor for visudo in ~/.zshrc if using zsh'
-  lineinfile:
-    path: ~/.zshrc
-    regexp: '^.*export\sEDITOR=.*'
-    line: 'export EDITOR=vim visudo'
-  when: vim_shell.stdout is search('zsh')
-  #when: "vim_shell.stdout.find('v=' ~ /zsh) == -1"  # should look similar to this in ansible 2.9
+  tags: vim
 
 - name: '[Darwin] Set TERM environment variable in ~/.bash_profile if using bash'
   lineinfile:
-    path: ~/.bash_profile
+    path: "~/.{{ 'zshrc' if 'zsh' in vim_shell.stdout else 'bash_profile' if 'bash' in vim_shell.stdout }}"
     regexp: '^.*export\sTERM=.*'
     line: 'export TERM="xterm-256color"'
-  when: vim_shell.stdout is search('bash')
-  #when: "vim_shell.stdout.find('v=' ~ /bash) == -1"  # should look similar to this in ansible 2.9
-
-- name: '[Darwin] Set TERM environment variable in ~/.zshrc if using zsh'
-  lineinfile:
-    path: ~/.zshrc
-    regexp: '^.*export\sTERM=.*'
-    line: 'export TERM="xterm-256color"'
-  when: vim_shell.stdout is search('zsh')
-  #when: "vim_shell.stdout.find('v=' ~ /zsh) == -1"  # should look similar to this in ansible 2.9
+  tags: vim
 ...

@@ -1,4 +1,5 @@
 ---
+# Both Plug and Vundle need git for plugins installation
 - name: '[dependencies] Non-MacOS: Install git and CTags'
   package:
     name:
@@ -8,7 +9,7 @@
   become: yes
   register: vim_dep_result
   until: vim_dep_result is succeeded
-  when: ansible_os_family != 'Darwin'
+  when: "not 'Darwin' in ansible_os_family"
   tags:
   - vim
   - vim_dependencies
@@ -21,7 +22,7 @@
   become: no
   register: vim_dep_result
   until: vim_dep_result is succeeded
-  when: ansible_os_family == 'Darwin'
+  when: "'Darwin' in ansible_os_family"
   tags:
   - vim
   - vim_dependencies
