@@ -1,8 +1,6 @@
-"setlocal list
-"setlocal listchars-=tab:>.
-
-"setlocal expandtab
-setlocal autoindent
+"=================================== HTML ======================================
+setlocal noexpandtab
 setlocal nocopyindent
-
-"setlocal listchars-=tab:>.,trail:.,extends:#,nbsp:.
+setlocal list
+setlocal listchars-=tab:>.,trail:.,extends:#,nbsp:.
+"===============================================================================

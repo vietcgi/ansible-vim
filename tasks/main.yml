@@ -36,6 +36,7 @@
     vim_root_plugins: "{{ vim_root_dir }}/{{ vim_pm_config }}"
     # Plugins:
     vim_checklist:
+    - { src: vimrc.ale.j2, path: "{{ vim_root_dir }}/vimrc.ale", name: 'ale' }
     - { src: vimrc.emoji.j2, path: "{{ vim_root_dir }}/vimrc.emoji", name: 'vim-emoji' }
     - { src: vimrc.nerdtree.j2, path: "{{ vim_root_dir }}/vimrc.nerdtree", name: 'nerdtree' }
     - { src: vimrc.airline.j2, path: "{{ vim_root_dir }}/vimrc.airline", name: 'airline' }
@@ -63,6 +64,7 @@
     vim_root_plugins: "{{ vim_root_cust_conf_dir }}/{{ vim_pm_config }}"
     # Plugins:
     vim_checklist:
+    - { src: vimrc.ale.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.ale", name: 'ale' }
     - { src: vimrc.emoji.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.emoji", name: 'vim-emoji' }
     - { src: vimrc.nerdtree.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.nerdtree", name: 'nerdtree' }
     - { src: vimrc.airline.j2, path: "{{ vim_root_conf_plug_dir }}/vimrc.airline", name: 'airline' }
