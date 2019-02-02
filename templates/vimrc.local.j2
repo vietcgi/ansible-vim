@@ -111,8 +111,6 @@ set backspace=2                     " Backspace deletes like most editors
 
 {% endif %}
 "========================= DELETE TRAILING WHITESPACES==========================
-" Delete all Trailing White Spaces in all types of document except ruby,
-" javascript, perl:
 fun! StripTrailingWhitespace()
     " Only strip if the b:noStripeWhitespace variable isn't set
     if exists('b:noStripWhitespace')
@@ -121,8 +119,11 @@ fun! StripTrailingWhitespace()
     %s/\s\+$//e
 endfun
 
+" Delete all Trailing White Spaces in all types of documents:
 autocmd BufWritePre * call StripTrailingWhitespace()
-autocmd FileType ruby,javascript,perl let b:noStripWhitespace=1
+
+" DO NOT delete Trailing White Spaces for some filetypes (e.g.: ruby, javascript, perl):
+" autocmd FileType ruby,javascript,perl let b:noStripWhitespace=1
 "===============================================================================
 
 "================================ BREAK LINES ==================================
