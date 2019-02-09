@@ -85,6 +85,25 @@ Dependencies
 
 None
 
+
+Example Playbook
+----------------
+
+```yaml
+- hosts: macbooks
+  gather_facts: yes
+  roles:
+  - role: drew-kun.vim
+    vim_cleanup: yes
+    vim_env: users
+    vim_plugin_manager: plug
+    vim_emoji_git_integration: no
+    vim_neovim: yes
+    vim_users: "{{ vim_vault_users }}"
+    vim_colorscheme: nord
+    vim_plugins: "{{ vim_github_plugins + vim_asyncomplete_plugins }}"
+```
+
 License
 -------
 
