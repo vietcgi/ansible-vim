@@ -77,8 +77,8 @@ Role Variables
 | **vim_users** | List of users to install vim. Use it in conjunction with `vim_env`. | `user` |
 | **vim_neovim** | Install and configure neovim? | `yes` |
 | **vim_colorscheme** | which colorscheme to use? | `mustang` |
-| **vim_plugin_manager** | Which plugin manager to use? Options: vundle or plug | `plug` |
-| **vim_vundle_version** | Vundle version to install. | `v0.10.2` |
+| **vim_plugin_manager** | Which plugin manager to use? Options: vundle (not recommended) or plug | `plug` |
+| **vim_vundle_version** | Vundle version (used only when vim_plugin_manager is set to vundle - not recommended). | `v0.10.2` |
 | **vim_plugins** | List of vim plugins to install. Use [Vundle](https://github.com/gmarik/Vundle.vim) format. | see [`defaults/main.yml`](defaults/main.yml#L23) |
 | **vim_emoji_git_integration** | Itegrate emoji with gitgutter or signify (some people may not like the look). | `no` |
 
