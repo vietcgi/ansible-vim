@@ -14,12 +14,14 @@ vim_env: users
 vim_users:
 - user
 
+vim_neovim: yes
+
 # mustang, solarized, nord...
 vim_colorscheme: mustang
 
 vim_plugin_manager: plug  # 'vundle' or 'plug'
 
-vim_neovim: yes
+vim_vundle_version: 'v0.10.2'
 
 # Tip: note that the plugins specified within the single and double quotes.
 # This makes possible to specify the load options for each plugin if using plug (recommended)
@@ -41,8 +43,6 @@ vim_plugins:
 #- { name: 'ryanoasis/vim-devicons' }         # Add icons to plugins (Must be loaded after all other plugins in .vimrc)
 #- { name: 'wincent/command-t' }              # Fast "fuzzy" engine for switching buffers, searching etc.
 #- { name: 'ctrlpvim/ctrlp.vim' }             # Alternative to command-t (heavy - a lot of features, airline intergration)
-
-vim_vundle_version: 'v0.10.2'
 
 vim_emoji_git_integration: no  # Itegrate emoji with gitgutter or signify (some people don't like the look)
 ...
