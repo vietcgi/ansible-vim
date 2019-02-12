@@ -100,6 +100,12 @@ set pastetoggle=<F2>
 command! W :w                       " For mistyping :w as :W
 command! Q :q                       " For mistyping :q as :Q
 command! WQ :wq                     " For mistyping :wq as :WQ
+
+" Window Navigation with Ctrl-[hjkl]
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-H> <C-W>h
+noremap <C-L> <C-W>l
 "===============================================================================
 
 {% if not vim_neovim %}
