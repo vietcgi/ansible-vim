@@ -40,6 +40,21 @@
   become: yes
   tags: vim
 
+- name: '[user] Download en.utf-8.spl spell file from ftp'
+  get_url:
+    url: ftp://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
+    dest: ~/.vim/spell/en.utf-8.spl
+    owner: "{{ item }}"
+    group: "{{ item if ansible_os_family != 'Darwin' else 'wheel' if item == 'root' else 'staff' }}"
+    mode: 0644
+  register: vim_spell_result
+  until: vim_spell_result is succeeded
+  with_items: "{{ vim_users }}"
+  when: vim_users is defined
+  become: yes
+  become_user: "{{ item }}"
+  tags: vim
+
 - name: "[system] Setting EDITOR and TERM environment variables"
   blockinfile:
     path: /etc/profile.d/env_var.sh
