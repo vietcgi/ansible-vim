@@ -4,14 +4,14 @@
   tags: vim
 
 - name: "[main] Import cleanup tasks"
-  import_tasks: cleanup.yml
+  include_tasks: cleanup.yml
   when: vim_cleanup
   tags:
   - vim
   - vim_cleanup
 
 - name: "[main] Include dependencies installation tasks"
-  include_tasks: dependencies.yml
+  import_tasks: dependencies.yml
   tags:
   - vim
   - vim_dependencies
