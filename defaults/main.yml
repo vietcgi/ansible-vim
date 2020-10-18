@@ -17,7 +17,7 @@ vim_users:
 vim_neovim: yes
 
 # mustang, solarized, nord...
-vim_colorscheme: mustang
+vim_colorscheme: solarized
 
 vim_plugin_manager: plug  # 'vundle' or 'plug'
 
