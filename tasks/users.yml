@@ -27,6 +27,7 @@
     src: "{{ vim_root_config }}"
     dest: ~/.vimrc
     state: link
+    force: yes
   with_items: "{{ vim_users }}"
   become: yes
   become_user: "{{ item }}"
