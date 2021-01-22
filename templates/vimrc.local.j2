@@ -194,7 +194,7 @@ match OverLength /\%121v.\+/
 highlight LineProximity gui=undercurl guisp=orange
 let w:m1=matchadd('LineProximity', '\%<121v.\%>115v', -1)
 
-set number                          " Always show line numbers
+set number relativenumber            " Always show line numbers
 "set showmatch                       " Set show matching parenthesis (NOT NEEDED?)
 "===============================================================================
 

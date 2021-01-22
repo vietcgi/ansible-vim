@@ -8,23 +8,36 @@
   become: no
   tags: vim
 
-- name: '[Darwin] Check which SHELL is running'
-  command: "echo ${SHELL}"
-  register: vim_shell
-  changed_when: false
+- name: use vi-mode in bash
+  become: yes
+  lineinfile:
+    dest: /etc/bashrc
+    line: 'set -o vi'
   tags: vim
 
-- name: '[Darwin] Set vim as a default editor for visudo in ~/bash_profile if using bash'
+- name: setting EDITOR bashrc
+  become: yes
   lineinfile:
-    path: "~/.{{ 'zshrc' if 'zsh' in vim_shell.stdout else 'bash_profile' if 'bash' in vim_shell.stdout }}"
-    regexp: '^.*export\sEDITOR=.*'
-    line: 'export EDITOR=vim visudo'
+    dest: /etc/bashrc
+    line: 'export EDITOR=vim'
   tags: vim
 
-- name: '[Darwin] Set TERM environment variable in ~/.bash_profile if using bash'
+- name: use vi-mode in zshrc
+  become: yes
   lineinfile:
-    path: "~/.{{ 'zshrc' if 'zsh' in vim_shell.stdout else 'bash_profile' if 'bash' in vim_shell.stdout }}"
-    regexp: '^.*export\sTERM=.*'
+    dest: /etc/zshrc
+    line: 'set -o vi'
+
+- name: setting $EDITOR
+  become: yes
+  lineinfile:
+    dest: /etc/zshrc
+    line: 'export EDITOR=vim'
+
+- name: Set TERM environment zshrc
+  become: yes
+  lineinfile:
+    path: /etc/zshrc
     line: 'export TERM="xterm-256color"'
   tags: vim
 ...
