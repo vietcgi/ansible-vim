@@ -42,7 +42,7 @@
 
 - name: '[user] Download en.utf-8.spl spell file from ftp'
   get_url:
-    url: ftp://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
+    url: https://github.com/vim/vim/raw/refs/heads/master/runtime/spell/en.utf-8.spl
     dest: ~/.vim/spell/en.utf-8.spl
     owner: "{{ item }}"
     group: "{{ item if ansible_os_family != 'Darwin' else 'wheel' if item == 'root' else 'staff' }}"
